@@ -16,4 +16,13 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class PivotConstants {
+    public static final int MOTOR_ID = 0;
+    public static final int FULL_ROTATION_IN_ANGELS = 360;
+
+    public static final int ABS_ENCODER_CHANNEL = 0;
+    public static final int ABS_ENCODER_RANGE = 360;
+    public static final int ABS_ENCODER_OFFSET = 0;
+  }
 }
