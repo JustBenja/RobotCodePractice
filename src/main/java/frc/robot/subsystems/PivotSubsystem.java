@@ -7,14 +7,15 @@ import frc.robot.Constants;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
-import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkBase.PersistMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkMaxConfig;
 
 public class PivotSubsystem extends SubsystemBase {
     private final SparkMax motor;
     private final RelativeEncoder relEncoder;
     private final DutyCycleEncoder dutyEncoder;
-    private final SparkClosedLoopController config;
     
     public PivotSubsystem(){
         motor = new SparkMax(Constants.PivotConstants.MOTOR_ID, MotorType.kBrushless);
@@ -25,21 +26,21 @@ public class PivotSubsystem extends SubsystemBase {
                                            Constants.PivotConstants.ABS_ENCODER_RANGE, 
                                            Constants.PivotConstants.ABS_ENCODER_OFFSET);
 
-        relEncoder.setPosition(distance());
         
-        config = motor.getClosedLoopController();
+      SparkMaxConfig config = new SparkMaxConfig();
+      motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+      config.closedLoop.pid(Constants.PivotConstants.kP, Constants.PivotConstants.kI, Constants.PivotConstants.kD);
+        
+      relEncoder.setPosition(distance());
+        
     }
     
     public void SetPosition(double angle){
-        relEncoder.setPosition(angleToRotations(angle) + distance());
-        config.setReference(angle, ControlType.kPosition);
+        motor.getClosedLoopController().setReference(angle, ControlType.kPosition);
     }
 
-    public double angleToRotations(double angle){
-        return angle / Constants.PivotConstants.FULL_ROTATION_IN_ANGELS;
-    }
-
-    public double distance(){
+    private double distance(){
         return dutyEncoder.get() * 360;
     }
 }
