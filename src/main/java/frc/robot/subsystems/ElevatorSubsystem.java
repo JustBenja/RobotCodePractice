@@ -30,7 +30,7 @@ public class ElevatorSubsystem extends SubsystemBase{
 
         config.closedLoop.pidf(Constants.ElevatorConstants.kP, Constants.ElevatorConstants.kI, Constants.ElevatorConstants.kD, 1.0 / Constants.ElevatorConstants.kV);
 
-        encoder = motor.getAlternateEncoder();
+        encoder = motor.getEncoder();
     }
 
 
@@ -47,6 +47,7 @@ public class ElevatorSubsystem extends SubsystemBase{
 
     // give voltage to the motor
     public void set(double voltage){
-       motor.getClosedLoopController().setReference(ff.calculate(voltage), ControlType.kVoltage);
+        double ffVoltage = ff.calculate(Math.toRadians(encoder.getPosition() * 360));
+        motor.setVoltage(ffVoltage + voltage);
     }
 }
