@@ -20,13 +20,13 @@ public final class Constants {
   public static class ElevatorConstants {
     public static final int MOTOR_ID = 0;
 
-    public static final int kP = 0;
-    public static final int kI = 0;
-    public static final int kD = 0;
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
 
-    public static final int kS = 0;
-    public static final int kG = 0;
-    public static final int kV = 0;
+    public static final double kS = 0;
+    public static final double kG = 0;
+    public static final double kV = 0;
   }
 
   public static class PivotConstants {
@@ -34,10 +34,10 @@ public final class Constants {
 
     public static final int ABS_ENCODER_CHANNEL = 0;
     public static final int ABS_ENCODER_RANGE = 360;
-    public static final int ABS_ENCODER_OFFSET = 0;
+    public static final double ABS_ENCODER_OFFSET = 0;
 
-    public static final int kP = 0;
-    public static final int kI = 0;
-    public static final int kD = 0;
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
   }
 }
