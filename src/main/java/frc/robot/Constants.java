@@ -24,6 +24,10 @@ public final class Constants {
     public static final double kI = 0;
     public static final double kD = 0;
 
+    public static final int ABS_ENCODER_CHANNEL = 0;
+    public static final int ABS_ENCODER_RANGE = 360;
+    public static final double ABS_ENCODER_OFFSET = 0;
+
     public static final double kA = 0;
     public static final double kS = 0;
     public static final double kG = 0;
