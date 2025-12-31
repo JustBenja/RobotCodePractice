@@ -32,15 +32,11 @@ public class PivotSubsystem extends SubsystemBase {
 
       config.closedLoop.pid(Constants.PivotConstants.kP, Constants.PivotConstants.kI, Constants.PivotConstants.kD);
         
-      relEncoder.setPosition(distance());
+      relEncoder.setPosition(dutyEncoder.get());
         
     }
     
     public void SetPosition(double angle){
         motor.getClosedLoopController().setReference(angle, ControlType.kPosition);
-    }
-
-    private double distance(){
-        return dutyEncoder.get() * 360;
     }
 }

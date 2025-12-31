@@ -23,7 +23,8 @@ public class ElevatorSubsystem extends SubsystemBase{
 
         ff = new ElevatorFeedforward(Constants.ElevatorConstants.kS,
                                      Constants.ElevatorConstants.kG, 
-                                     Constants.ElevatorConstants.kV);
+                                     Constants.ElevatorConstants.kV,
+                                     Constants.ElevatorConstants.kA);
 
         SparkMaxConfig config = new SparkMaxConfig();
         motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
